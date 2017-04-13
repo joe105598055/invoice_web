@@ -51,7 +51,8 @@ public final class InvoiceWeb {
 
             Map<String, Object> model = new HashMap<>();
             model.put("invoice", invoice);
-
+            //http://company.g0v.ronny.tw/api/show/統一編號
+            //http://company.g0v.ronny.tw/api/search?q=公司名稱
             return new ModelAndView(model, "invoice_result.vm"); // located in the resources directory
         }, new VelocityTemplateEngine());
     }

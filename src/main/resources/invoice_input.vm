@@ -34,5 +34,16 @@
 
 <p>
 
+<table>
+<tr>
+<td>公司名稱</td>
+<td>統一編號</td>
+</tr>
+<tr>
+<td><input name="company" type="text"></td>
+<td><input name="company_id" type="text"></td>
+</tr>
+<table>
+
 </body>
 </html>
