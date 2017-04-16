@@ -9,4 +9,10 @@ function clearTaxInclude() {
     x.value = ""
 }
 
+function clearCompanyName() {
+    document.getElementById("companyName").value = "";
+}
 
+function clearVatID() {
+    document.getElementById("vatID").value = "";
+}

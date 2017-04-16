@@ -1,10 +1,14 @@
 package tw.teddysoft.bdd.web.app;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import tw.teddysoft.bdd.domain.invoice.Invoice;
 import tw.teddysoft.bdd.domain.invoice.InvoiceBuilder;
+import tw.teddysoft.bdd.domain.invoice.CompanyTranslator;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,10 +55,37 @@ public final class InvoiceWeb {
 
             Map<String, Object> model = new HashMap<>();
             model.put("invoice", invoice);
-            //http://company.g0v.ronny.tw/api/show/統一編號
-            //http://company.g0v.ronny.tw/api/search?q=公司名稱
+            model.put("companyName", "");
+            model.put("vatID", "");
             return new ModelAndView(model, "invoice_result.vm"); // located in the resources directory
         }, new VelocityTemplateEngine());
+
+        post("/invoice/company",(request, response) ->{
+
+            CompanyTranslator companyTranslator = new CompanyTranslator();
+            String _companyName = request.queryMap("companyName").value();
+            String _vatID = request.queryMap("vatID").value();
+            String companyName = "";
+            String vatID = "";
+
+            if(isUseCompanyNameToTranslator(_companyName)){
+                vatID = companyTranslator.getVatID(_companyName);
+            }
+            else{
+                companyName = companyTranslator.getCompanyName(_vatID);
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("companyName", companyName);
+            model.put("vatID", vatID);
+            Invoice invoice = InvoiceBuilder.newInstance().issue();
+            model.put("invoice", invoice);
+
+            return new ModelAndView(model, "invoice_result.vm"); // located in the resources directory
+        },new VelocityTemplateEngine());
+    }
+
+    private static boolean isUseCompanyNameToTranslator(String CompanyName){
+        return !(CompanyName.isEmpty());
     }
 
     private static boolean isUseTaxIncludedPriceToCalculateInvoice(int taxIncludedPrice){

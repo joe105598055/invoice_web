@@ -1,7 +1,6 @@
 package step;
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
-import tw.teddysoft.bdd.domain.invoice.companyTranslator;
+import tw.teddysoft.bdd.domain.invoice.CompanyTranslator;
 
 import java.io.IOException;
 
@@ -15,6 +14,8 @@ public class WebIssuingInvoiceStep implements En {
 
     String companyName;
     String vatID;
+    CompanyTranslator companyTranslator = new CompanyTranslator();
+
     public WebIssuingInvoiceStep() {
         When("^I enter the VAT ID \"([^\"]*)\"$", (String vatID) -> {
             // Write code here that turns the phrase above into concrete actions
