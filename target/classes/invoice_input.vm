@@ -45,7 +45,7 @@
     <td><input id="vatID" name="vatID" type="text" onkeypress="clearCompanyName()"></td>
     </tr>
     <table>
-     <input name="issue" type="submit" value="查詢">
+     <input name="search" type="submit" value="查詢">
 </form>
 
 

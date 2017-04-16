@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
-import tw.teddysoft.bdd.domain.invoice.Invoice;
-import tw.teddysoft.bdd.domain.invoice.InvoiceBuilder;
-import tw.teddysoft.bdd.domain.invoice.CompanyTranslator;
+import tw.teddysoft.bdd.domain.invoice.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -62,21 +60,25 @@ public final class InvoiceWeb {
 
         post("/invoice/company",(request, response) ->{
 
+            Company company;
             CompanyTranslator companyTranslator = new CompanyTranslator();
-            String _companyName = request.queryMap("companyName").value();
-            String _vatID = request.queryMap("vatID").value();
-            String companyName = "";
-            String vatID = "";
+            String companyName = request.queryMap("companyName").value();
+            String vatID = request.queryMap("vatID").value();
 
-            if(isUseCompanyNameToTranslator(_companyName)){
-                vatID = companyTranslator.getVatID(_companyName);
+            if (isUseCompanyNameToTranslator(companyName)) {
+                company = DefaultCompanyBuilder.newInstance()
+                        .setCompanyName(companyName)
+                        .search();
             }
-            else{
-                companyName = companyTranslator.getCompanyName(_vatID);
+            else {
+                company = DefaultCompanyBuilder.newInstance()
+                        .setVatID(vatID)
+                        .search();
             }
+
             Map<String, Object> model = new HashMap<>();
-            model.put("companyName", companyName);
-            model.put("vatID", vatID);
+            model.put("company", company);
+
             Invoice invoice = InvoiceBuilder.newInstance().issue();
             model.put("invoice", invoice);
 

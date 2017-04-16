@@ -15,8 +15,7 @@ public class CompanyTranslator {
 
     //http://company.g0v.ronny.tw/api/show/統一編號
     //http://company.g0v.ronny.tw/api/search?q=公司名稱
-    public CompanyTranslator() {}
-    public String getCompanyName(String vatID) throws IOException {
+    public static String getCompanyName(String vatID) throws IOException {
 
         URL url = new URL("http://company.g0v.ronny.tw/api/show/" + vatID);
         URLConnection con = url.openConnection();
@@ -26,12 +25,12 @@ public class CompanyTranslator {
         String body = IOUtils.toString(in, encoding); //body
         String result = decode(body); //decode
         JSONObject obj = new JSONObject(result);//convert to json object
-        String companyName = obj.getJSONObject("data").getString("公司名稱");
+        String companyName = obj.getJSONObject("data").get("公司名稱").toString();
 
         return companyName;
     }
 
-    public String getVatID(String companyName) throws IOException {
+    public static String getVatID(String companyName) throws IOException {
 
         URL url = new URL("http://company.g0v.ronny.tw/api/search?q=" + companyName);
         URLConnection con = url.openConnection();

@@ -36,11 +36,11 @@
     <td>統一編號</td>
     </tr>
     <tr>
-    <td><input name="companyName" type="text" value = $companyName ></td>
-    <td><input name="vatID" type="text" value = $vatID ></td>
+    <td><input name="companyName" type="text" value = $company.getCompanyName() ></td>
+    <td><input name="vatID" type="text" value = $company.getVatID() ></td>
     </tr>
     <table>
-    <input name="reissue" type="submit" value="重新查詢"　>
+    <input name="reissue" type="submit" value="重新查詢">
 </form>
 
 </body>
