@@ -10,13 +10,13 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by joe on 2017/4/14.
  */
-public class WebIssuingInvoiceStep implements En {
+public class SearchCompanyStep implements En {
 
     String companyName;
     String vatID;
     CompanyTranslator companyTranslator = new CompanyTranslator();
 
-    public WebIssuingInvoiceStep() {
+    public SearchCompanyStep() {
         When("^I enter the VAT ID \"([^\"]*)\"$", (String vatID) -> {
             // Write code here that turns the phrase above into concrete actions
             this.vatID = vatID ;

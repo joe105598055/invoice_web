@@ -52,9 +52,10 @@ public final class InvoiceWeb {
             }
 
             Map<String, Object> model = new HashMap<>();
+
             model.put("invoice", invoice);
-            model.put("companyName", "");
-            model.put("vatID", "");
+            Company company = DefaultCompanyBuilder.newInstance().search();
+            model.put("company", company);
             return new ModelAndView(model, "invoice_result.vm"); // located in the resources directory
         }, new VelocityTemplateEngine());
 
