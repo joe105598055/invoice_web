@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 /**
@@ -15,34 +16,58 @@ public class CompanyTranslator {
 
     //http://company.g0v.ronny.tw/api/show/統一編號
     //http://company.g0v.ronny.tw/api/search?q=公司名稱
-    public static String getCompanyName(String vatID) throws IOException {
+    public static String getCompanyName(String vatID) {
 
-        URL url = new URL("http://company.g0v.ronny.tw/api/show/" + vatID);
-        URLConnection con = url.openConnection();
-        InputStream in = con.getInputStream();
-        String encoding = con.getContentEncoding();
-        encoding = encoding == null ? "UTF-8" : encoding;
-        String body = IOUtils.toString(in, encoding); //body
-        String result = decode(body); //decode
-        JSONObject obj = new JSONObject(result);//convert to json object
-        String companyName = obj.getJSONObject("data").get("公司名稱").toString();
+        if(vatID.length() != 8)
+            return "統一編號格式錯誤";
 
-        return companyName;
+        try {
+
+            URL url = null;
+            url = new URL("http://company.g0v.ronny.tw/api/show/" + vatID);
+            URLConnection con = url.openConnection();
+            InputStream in = con.getInputStream();
+            String encoding = con.getContentEncoding();
+            encoding = encoding == null ? "UTF-8" : encoding;
+            String body = IOUtils.toString(in, encoding); //body
+            String result = decode(body); //decode
+            JSONObject obj = new JSONObject(result);//convert to json object
+
+            String companyName = obj.getJSONObject("data").get("公司名稱").toString();
+            return companyName;
+
+        } catch (Exception e) {
+
+            return "查無此公司";
+
+        }
+
+
     }
 
     public static String getVatID(String companyName) throws IOException {
 
-        URL url = new URL("http://company.g0v.ronny.tw/api/search?q=" + companyName);
-        URLConnection con = url.openConnection();
-        InputStream in = con.getInputStream();
-        String encoding = con.getContentEncoding();
-        encoding = encoding == null ? "UTF-8" : encoding;
-        String body = IOUtils.toString(in, encoding); //body
-        String result = decode(body); //decode
-        JSONObject obj = new JSONObject(result);//convert to json object
-        String vatID = obj.getJSONArray("data").getJSONObject(0).getString("統一編號");
 
-        return vatID;
+        try {
+
+
+            URL url = new URL("http://company.g0v.ronny.tw/api/search?q=" + companyName);
+            URLConnection con = url.openConnection();
+            InputStream in = con.getInputStream();
+            String encoding = con.getContentEncoding();
+            encoding = encoding == null ? "UTF-8" : encoding;
+            String body = IOUtils.toString(in, encoding); //body
+            String result = decode(body); //decode
+            JSONObject obj = new JSONObject(result);//convert to json object
+            String vatID = obj.getJSONArray("data").getJSONObject(0).getString("統一編號");
+
+             return vatID;
+
+        }catch (Exception e) {
+
+            return "查無此統一編號";
+
+        }
     }
 
     private static String decode(String s) {

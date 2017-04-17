@@ -34,6 +34,7 @@ public class DefaultCompanyBuilder implements CompanyBuilder {
         if(isUseCompanyNameToTranslator()) {
 
             this.vatID = CompanyTranslator.getVatID(this.companyName);
+            return new Company(this.companyName,this.vatID);
         }
         else if(isNotTypeAnyField())
         {

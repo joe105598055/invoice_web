@@ -21,6 +21,16 @@ public class Utility {
         }
     }
 
+    public static boolean isUnderCompanyWebMode() {
+
+        Properties prop = Utility.loadProperties(Utility.CUCUMBER_PROPERTY_FILE);
+        if("web".equals(prop.getProperty("company.ui"))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static Properties loadProperties(String fileName)  {
         InputStream input = null;
         Properties prop = new Properties();
@@ -49,5 +59,6 @@ public class Utility {
             e.printStackTrace();
         }
     }
+
 
 }

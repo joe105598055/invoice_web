@@ -53,7 +53,7 @@ public class WebInvoiceBuilder implements InvoiceBuilder {
             return new Invoice(taxIncludedPrice, vatRate, taxExcludedPrice, vat);
         }
         finally {
-            getWebDriver().close();
+            getWebDriver().quit();
         }
     }
 

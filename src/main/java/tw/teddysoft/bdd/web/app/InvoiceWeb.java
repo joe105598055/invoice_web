@@ -67,12 +67,12 @@ public final class InvoiceWeb {
             String vatID = request.queryMap("vatID").value();
 
             if (isUseCompanyNameToTranslator(companyName)) {
-                company = DefaultCompanyBuilder.newInstance()
+                company = CompanyBuilder.newInstance()
                         .setCompanyName(companyName)
                         .search();
             }
             else {
-                company = DefaultCompanyBuilder.newInstance()
+                company = CompanyBuilder.newInstance()
                         .setVatID(vatID)
                         .search();
             }
