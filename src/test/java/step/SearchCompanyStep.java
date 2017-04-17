@@ -13,9 +13,9 @@ import static org.junit.Assert.assertThat;
  */
 public class SearchCompanyStep implements En {
 
-    String companyName;
+
     String vatID;
-    CompanyTranslator companyTranslator = new CompanyTranslator();
+//    CompanyTranslator companyTranslator = new CompanyTranslator();
 
     DomainCompanyHelper helper;
     public SearchCompanyStep(DomainCompanyHelper helper) {
@@ -24,19 +24,12 @@ public class SearchCompanyStep implements En {
 
         When("^I enter the VAT ID \"([^\"]*)\"$", (String vatID) -> {
             // Write code here that turns the phrase above into concrete actions
-//            this.vatID = vatID ;
-
             ///web
             helper.getCompanyBuilder().setVatID(vatID);
 
         });
         Then("^I should see the company name \"([^\"]*)\"$", (String companyName) -> {
             // Write code here that turns the phrase above into concrete actions
-//            try {
-//                assertThat(companyTranslator.getCompanyName(this.vatID), is (companyName));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
             ///web
             try {
                 helper.setMyCompany(helper.getCompanyBuilder().search());
@@ -53,17 +46,11 @@ public class SearchCompanyStep implements En {
         });
         When("^I enter the company name \"([^\"]*)\"$", (String companyName) -> {
             // Write code here that turns the phrase above into concrete actions
-            this.companyName = companyName;
             ///web
             helper.getCompanyBuilder().setCompanyName(companyName);
         });
         Then("^I should see the VAT ID \"([^\"]*)\"$", (String vatID) -> {
             // Write code here that turns the phrase above into concrete actions
-//            try {
-//                assertThat(companyTranslator.getVatID(this.companyName), is (vatID));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
             ///web
             try {
                 helper.setMyCompany(helper.getCompanyBuilder().search());

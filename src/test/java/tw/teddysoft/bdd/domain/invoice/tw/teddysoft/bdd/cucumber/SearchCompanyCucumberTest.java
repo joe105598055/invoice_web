@@ -1,18 +1,18 @@
 package tw.teddysoft.bdd.domain.invoice.tw.teddysoft.bdd.cucumber;
 
+/**
+ * Created by joe on 2017/4/17.
+ */
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
-/**
- * Created by teddy on 2017/2/21.
- */
-
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/features/issuing_company_invoice.feature",
+        features = "src/test/features/entering_vatid_and_company_name.feature",
         glue = {"step"},
         format = {"json:target/cucumber.json", "html:target/site/cucumber-pretty"}
 )
-public class WebIssuingInvoiceCucumberTest {
+public class SearchCompanyCucumberTest {
 }
