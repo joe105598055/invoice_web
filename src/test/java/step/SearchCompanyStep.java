@@ -18,6 +18,7 @@ public class SearchCompanyStep implements En {
 //    CompanyTranslator companyTranslator = new CompanyTranslator();
 
     DomainCompanyHelper helper;
+
     public SearchCompanyStep(DomainCompanyHelper helper) {
 
         this.helper = helper;
