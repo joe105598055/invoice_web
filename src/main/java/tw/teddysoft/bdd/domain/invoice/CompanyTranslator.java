@@ -49,9 +49,8 @@ public class CompanyTranslator {
 
 
         try {
-
-
-            URL url = new URL("http://company.g0v.ronny.tw/api/search?q=" + companyName);
+            
+            URL url = new URL("http://company.g0v.ronny.tw/api/search?q=" +  new String(companyName.getBytes("UTF-8")));
             URLConnection con = url.openConnection();
             InputStream in = con.getInputStream();
             String encoding = con.getContentEncoding();
