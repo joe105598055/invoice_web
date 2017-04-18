@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5e5c05b8-c8d5-49c4-bc7a-cbdfa1172903" name="Default" comment="" />
+    <list default="true" id="5e5c05b8-c8d5-49c4-bc7a-cbdfa1172903" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/cucumber.properties" afterPath="$PROJECT_DIR$/src/test/resources/cucumber.properties" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/resources/cucumber.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="15" />
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -181,11 +183,11 @@
         <option value="$PROJECT_DIR$/src/test/java/tw/teddysoft/bdd/domain/invoice/support/WebInvoiceBuilder.java" />
         <option value="$PROJECT_DIR$/src/test/java/tw/teddysoft/bdd/domain/invoice/CompanyTranslatorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/tw/teddysoft/bdd/domain/invoice/tw/teddysoft/bdd/cucumber/SearchCompanyCucumberTest.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/cucumber.properties" />
         <option value="$PROJECT_DIR$/src/test/java/step/SearchCompanyStep.java" />
         <option value="$PROJECT_DIR$/src/test/features/entering_vatid_and_company_name.feature" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/tw/teddysoft/bdd/domain/invoice/CompanyTranslator.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/cucumber.properties" />
       </list>
     </option>
   </component>
@@ -1169,7 +1171,7 @@
     <entry file="file://$PROJECT_DIR$/src/test/resources/cucumber.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="15" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="14" />
           <folding />
         </state>
       </provider>
