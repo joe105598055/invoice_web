@@ -1,45 +1,38 @@
 package tw.teddysoft.bdd.domain.invoice;
 
-import org.apache.commons.io.IOUtils;
-import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.io.*;
 import java.net.URL;
-import java.net.URLConnection;
+
+import java.nio.charset.Charset;
+
 /**
  * Created by joe on 2017/4/14.
  */
 public class CompanyTranslator {
 
+    static Logger logger = LoggerFactory.getLogger(CompanyTranslator.class);
+
     //http://company.g0v.ronny.tw/api/show/統一編號
     //http://company.g0v.ronny.tw/api/search?q=公司名稱
     public static String getCompanyName(String vatID) {
+
 
         if(vatID.length() != 8)
             return "統一編號格式錯誤";
 
         try {
 
-            URL url = null;
-            url = new URL("http://company.g0v.ronny.tw/api/show/" + vatID);
-            URLConnection con = url.openConnection();
-            InputStream in = con.getInputStream();
-            String encoding = con.getContentEncoding();
-            encoding = encoding == null ? "UTF-8" : encoding;
-            String body = IOUtils.toString(in, encoding); //body
-            String result = decode(body); //decode
-            JSONObject obj = new JSONObject(result);//convert to json object
-
-            String companyName = obj.getJSONObject("data").get("公司名稱").toString();
+            String url = "http://company.g0v.ronny.tw/api/show/" + vatID;
+            JSONObject json = readJsonFromUrl( url);
+            String companyName = json.getJSONObject("data").get("公司名稱").toString();
             return companyName;
 
         } catch (Exception e) {
-
             return "查無此公司";
-
         }
 
 
@@ -47,52 +40,43 @@ public class CompanyTranslator {
 
     public static String getVatID(String companyName) throws IOException {
 
-
         try {
-            
-            URL url = new URL("http://company.g0v.ronny.tw/api/search?q=" +  new String(companyName.getBytes("UTF-8")));
-            URLConnection con = url.openConnection();
-            InputStream in = con.getInputStream();
-            String encoding = con.getContentEncoding();
-            encoding = encoding == null ? "UTF-8" : encoding;
-            String body = IOUtils.toString(in, encoding); //body
-            String result = decode(body); //decode
-            JSONObject obj = new JSONObject(result);//convert to json object
-            String vatID = obj.getJSONArray("data").getJSONObject(0).getString("統一編號");
 
-             return vatID;
+            String decode_company = new String(companyName.getBytes("UTF-8"), "UTF-8");
+            String url = "http://company.g0v.ronny.tw/api/search?q=" + decode_company;
+            JSONObject json = readJsonFromUrl( url);
+            String vatID = json.getJSONArray("data").getJSONObject(0).getString("統一編號");
+            return vatID;
 
-        }catch (Exception e) {
+        } catch (Exception e) {
 
-            return "查無此統一編號";
+                return "查無此統一編號";
 
         }
+
     }
 
-    private static String decode(String s) {
-        StringBuilder sb = new StringBuilder(s.length());
-        char[] chars = s.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            char c = chars[i];
-            if (c == '\\' && chars[i + 1] == 'u') {
-                char cc = 0;
-                for (int j = 0; j < 4; j++) {
-                    char ch = Character.toLowerCase(chars[i + 2 + j]);
-                    if ('0' <= ch && ch <= '9' || 'a' <= ch && ch <= 'f') {
-                        cc |= (Character.digit(ch, 16) << (3 - j) * 4);
-                    } else {
-                        cc = 0;
-                        break;
-                    }
-                }
-                if (cc > 0) {
-                    i += 5;
-                    sb.append(cc);
-                    continue;
-                }
-            }
-            sb.append(c);
+
+
+    private static String readAll(Reader rd) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while ((cp = rd.read()) != -1) {
+            sb.append((char) cp);
         }
         return sb.toString();
     }
+
+    private static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+        InputStream is = new URL(url).openStream();
+        try {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            String jsonText = readAll(rd);
+            JSONObject json = new JSONObject(jsonText);
+            return json;
+        } finally {
+            is.close();
+        }
+    }
+
 }
