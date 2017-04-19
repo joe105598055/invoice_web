@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/features/entering_vatid_and_company_name.feature",
         glue = {"step"},
-        format = {"json:target/cucumber.json", "html:target/site/cucumber-pretty"}
+        format = {"json:target/entering_vatid_and_company_name/cucumber.json", "html:target/site/entering_vatid_and_company_name/cucumber-pretty"}
 )
 public class SearchCompanyCucumberTest {
 }
