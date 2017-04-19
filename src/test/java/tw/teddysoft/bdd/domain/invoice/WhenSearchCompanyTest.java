@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by joe on 2017/4/16.
  */
-public class WhenSearchCompany {
+public class WhenSearchCompanyTest {
 
     @Test
     public void search_By_companyName() throws IOException {

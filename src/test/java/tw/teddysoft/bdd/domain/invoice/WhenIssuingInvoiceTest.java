@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 /**
  * Created by teddy on 2017/3/2.
  */
-public class WhenIssuingInvoice {
+public class WhenIssuingInvoiceTest {
 
     @Test
     public void should_be_a_regular_invoice_when_given_normal_vatRate_and_taxIncludePrice(){
