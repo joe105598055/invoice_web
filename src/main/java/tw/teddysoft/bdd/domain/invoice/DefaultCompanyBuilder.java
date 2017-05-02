@@ -33,7 +33,7 @@ public class DefaultCompanyBuilder implements CompanyBuilder {
 
         if(isUseCompanyNameToTranslator()) {
 
-            this.vatID = CompanyTranslator.getVatID(this.companyName);
+            this.vatID = CompanySearcher.getVatID(this.companyName);
             return new Company(this.companyName,this.vatID);
         }
         else if(isNotTypeAnyField())
@@ -41,7 +41,7 @@ public class DefaultCompanyBuilder implements CompanyBuilder {
             return new Company(this.companyName,this.vatID);
         }
 
-        return new Company(CompanyTranslator.getCompanyName(this.vatID),this.vatID);
+        return new Company(CompanySearcher.getCompanyName(this.vatID),this.vatID);
     }
 
     private boolean isUseCompanyNameToTranslator(){

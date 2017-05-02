@@ -1,12 +1,9 @@
 package tw.teddysoft.bdd.web.app;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import tw.teddysoft.bdd.domain.invoice.*;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,7 +59,7 @@ public final class InvoiceWeb {
         post("/invoice/company",(request, response) ->{
 
             Company company;
-            CompanyTranslator companyTranslator = new CompanyTranslator();
+            CompanySearcher companyTranslator = new CompanySearcher();
             String companyName = request.queryMap("companyName").value();
             String vatID = request.queryMap("vatID").value();
 

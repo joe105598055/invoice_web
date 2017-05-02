@@ -1,6 +1,5 @@
 package step;
 import cucumber.api.java8.En;
-import tw.teddysoft.bdd.domain.invoice.CompanyTranslator;
 import tw.teddysoft.bdd.domain.invoice.support.DomainCompanyHelper;
 
 import java.io.IOException;
@@ -15,7 +14,7 @@ public class SearchCompanyStep implements En {
 
 
     String vatID;
-//    CompanyTranslator companyTranslator = new CompanyTranslator();
+//    CompanySearcher companyTranslator = new CompanySearcher();
 
     DomainCompanyHelper helper;
 

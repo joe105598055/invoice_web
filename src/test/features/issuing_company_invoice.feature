@@ -15,7 +15,7 @@ Feature: Issuing invoices for companies
       | tax_included    | VAT   | tax_excluded | notes            |
       | 36000           | 1714   | 34286       | Refactoring定價  |
       | 17900           | 852   | 17048        | Scrum早鳥        |
-      | 17000           | 810   | 16190        | Scrum泰迪之友     |
+      | 17000           | 810   | 16190        | Scrum泰迪之友    |
       | 21000           | 1000  | 20000        | Scrum定價        |
       | 99              | 5     | 94           | 四捨五入案例       |
       | 1               | 0     | 1            | 邊界條件           |
@@ -36,9 +36,9 @@ Feature: Issuing invoices for companies
       | tax_included    | VAT   | tax_excluded | notes            |
       | 36000           | 1714   | 34286       | Refactoring定價  |
       | 17900           | 852   | 17048        | Scrum早鳥        |
-      | 17000           | 810   | 16190        | Scrum泰迪之友     |
+      | 17000           | 810   | 16190        | Scrum泰迪之友    |
       | 21000           | 1000  | 20000        | Scrum定價        |
-      | 99              | 5     | 94           | 四捨五入案例       |
+      | 99              | 5     | 94           | 四捨五入案例      |
       | 1               | 0     | 1            | 邊界條件         |
     #  | 10              | 0     | 10           | 此案例不適用     |
       | 11              | 1     | 10           | 邊界條件         |
