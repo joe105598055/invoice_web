@@ -38,11 +38,24 @@ public class WhenSearchCompanyTest {
     }
 
     @Test
-    public void search_By_Last_type() throws IOException {
+    public void search_By_Last_type_CompanyName() throws IOException {
 
         Company company = new Company()
                 .setVatID("123456")
                 .setCompanyName("泰迪軟體科技有限公司");
+
+        assertThat(company).isNotNull();
+        assertThat(company.getVatID()).isEqualTo("53909614");
+        assertThat(company.getCompanyName()).isEqualTo("泰迪軟體科技有限公司");
+
+    }
+
+    @Test
+    public void search_By_Last_type_vatID() throws IOException {
+
+        Company company = new Company()
+                .setCompanyName("泰迪軟體科技有限公司")
+                .setVatID("53909614");
 
         assertThat(company).isNotNull();
         assertThat(company.getVatID()).isEqualTo("53909614");
