@@ -18,11 +18,5 @@ public class CustomPicoFactory extends PicoFactory  {
         } else {
             addClass(DefaultInvoiceBuilder.class);
         }
-        if(Utility.isUnderCompanyWebMode()) {
-            addClass(WebCompanyBuilder.class);
-        }
-        else{
-            addClass(DefaultCompanyBuilder.class);
-        }
     }
 }

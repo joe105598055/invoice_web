@@ -21,7 +21,7 @@
     <td><input name="taxIncludedPrice" type="text" value="$invoice.getTaxIncludedPrice()" readonly></td>
     <td><input name="vatRate" type="text" value="$invoice.getVatRate()" readonly></td>
     <td><input name="vat" type="text" value="$invoice.getVat()" readonly></td>
-    <td><input name="taxExcludedPrice" type="text" value="$invoice.getTaxExcludedPrice()"" readonly></td>
+    <td><input name="taxExcludedPrice" type="text" value="$invoice.getTaxExcludedPrice()" readonly></td>
     </tr>
     </table>
       <input name="reissue" type="submit" value="重開發票">
@@ -36,8 +36,8 @@
     <td>統一編號</td>
     </tr>
     <tr>
-    <td><input name="companyName" type="text" value = $company.getCompanyName() ></td>
-    <td><input name="vatID" type="text" value = $company.getVatID() ></td>
+    <td><input name="companyName" type="text" value = $companyName ></td>
+    <td><input name="vatID" type="text" value = $vatID ></td>
     </tr>
     <table>
     <input name="reissue" type="submit" value="重新查詢">

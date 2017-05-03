@@ -2,6 +2,7 @@ package tw.teddysoft.bdd.web.app;
 
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
+import tw.teddysoft.bdd.domain.company.Company;
 import tw.teddysoft.bdd.domain.invoice.*;
 
 import java.util.HashMap;
@@ -51,31 +52,31 @@ public final class InvoiceWeb {
             Map<String, Object> model = new HashMap<>();
 
             model.put("invoice", invoice);
-            Company company = DefaultCompanyBuilder.newInstance().search();
-            model.put("company", company);
+            model.put("companyName", "");
+            model.put("vatID", "");
             return new ModelAndView(model, "invoice_result.vm"); // located in the resources directory
         }, new VelocityTemplateEngine());
 
         post("/invoice/company",(request, response) ->{
 
             Company company;
-            CompanySearcher companyTranslator = new CompanySearcher();
-            String companyName = request.queryMap("companyName").value();
-            String vatID = request.queryMap("vatID").value();
+            String _companyName = request.queryMap("companyName").value();
+            String _vatID = request.queryMap("vatID").value();
 
-            if (isUseCompanyNameToTranslator(companyName)) {
-                company = CompanyBuilder.newInstance()
-                        .setCompanyName(companyName)
-                        .search();
+            if (isUseCompanyNameToSearch(_companyName)) {
+                company = new Company().setCompanyName(_companyName);
             }
-            else {
-                company = CompanyBuilder.newInstance()
-                        .setVatID(vatID)
-                        .search();
+            else{
+                company = new Company().setVatID(_vatID);
             }
-
+//            System.out.println("companyName = " + company.getCompanyName() );
+//            System.out.println("vatID = " + company.getVatID());
+            String companyName = company.getCompanyName();
+            String vatID = company.getVatID();
             Map<String, Object> model = new HashMap<>();
-            model.put("company", company);
+            model.put("companyName", companyName);
+            model.put("vatID", vatID);
+
 
             Invoice invoice = InvoiceBuilder.newInstance().issue();
             model.put("invoice", invoice);
@@ -84,7 +85,7 @@ public final class InvoiceWeb {
         },new VelocityTemplateEngine());
     }
 
-    private static boolean isUseCompanyNameToTranslator(String CompanyName){
+    private static boolean isUseCompanyNameToSearch(String CompanyName){
         return !(CompanyName.isEmpty());
     }
 

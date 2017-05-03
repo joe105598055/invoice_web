@@ -1,6 +1,7 @@
 package tw.teddysoft.bdd.domain.invoice;
 
 import org.junit.Test;
+import tw.teddysoft.bdd.domain.company.CompanySearcher;
 
 import java.io.IOException;
 

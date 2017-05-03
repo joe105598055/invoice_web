@@ -1,6 +1,7 @@
 package tw.teddysoft.bdd.domain.invoice;
 
 import org.junit.Test;
+import tw.teddysoft.bdd.domain.company.Company;
 
 import java.io.IOException;
 
@@ -14,9 +15,9 @@ public class WhenSearchCompanyTest {
     @Test
     public void search_By_companyName() throws IOException {
 
-        Company company = DefaultCompanyBuilder.newInstance()
-                .setCompanyName("泰迪軟體科技有限公司")
-                .search();
+        Company company = new Company()
+                .setCompanyName("泰迪軟體科技有限公司");
+
 
         assertThat(company).isNotNull();
         assertThat(company.getVatID()).isEqualTo("53909614");
@@ -27,9 +28,8 @@ public class WhenSearchCompanyTest {
     @Test
     public void search_By_vatID() throws IOException {
 
-        Company company = DefaultCompanyBuilder.newInstance()
-                .setVatID("53909614")
-                .search();
+        Company company = new Company()
+                .setVatID("53909614");
 
         assertThat(company).isNotNull();
         assertThat(company.getVatID()).isEqualTo("53909614");
@@ -40,10 +40,9 @@ public class WhenSearchCompanyTest {
     @Test
     public void search_By_Last_type() throws IOException {
 
-        Company company = DefaultCompanyBuilder.newInstance()
-                .setVatID("53909614")
-                .setCompanyName("泰迪軟體科技有限公司")
-                .search();
+        Company company = new Company()
+                .setVatID("123456")
+                .setCompanyName("泰迪軟體科技有限公司");
 
         assertThat(company).isNotNull();
         assertThat(company.getVatID()).isEqualTo("53909614");
