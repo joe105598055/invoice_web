@@ -1,7 +1,6 @@
 package tw.teddysoft.bdd.domain.invoice.support;
 
 import cucumber.runtime.java.picocontainer.PicoFactory;
-import tw.teddysoft.bdd.domain.invoice.DefaultCompanyBuilder;
 import tw.teddysoft.bdd.domain.invoice.DefaultInvoiceBuilder;
 
 import java.util.Properties;
